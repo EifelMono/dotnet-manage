@@ -127,7 +127,12 @@ namespace dotnet_manage
         {
             if (sdk is null)
                 return;
-            StartProcess("open", sdk.Directory, $"\"{sdk.Directory}\"");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                StartProcess("open", sdk.Directory, $"\"{sdk.Directory}\"");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                StartProcess("open", sdk.Directory, $"\"{sdk.Directory}\"");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                StartProcess("cmd.exe", sdk.Directory, $"/c explorer \"{sdk.Directory}\"");
         }
 
         public static void SdkDirectoryOpenInShellWindow(Sdk sdk)
@@ -140,7 +145,7 @@ namespace dotnet_manage
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 StartProcess("xterm", sdk.Directory);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                StartProcess("cmd", sdk.Directory);
+                StartProcess("cmd.exe", sdk.Directory, $"/c start cmd.exe @cmd /k cd \"{sdk.Directory}\"");
         }
         #endregion
     }
