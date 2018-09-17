@@ -5,17 +5,33 @@
         <TargetFramework>netcoreapp2.1</TargetFramework>
         <RootNamespace>dotnet_manage</RootNamespace>
         <LangVersion>7.3</LangVersion>
+        <TieredCompilation>true</TieredCompilation>
+        <SynchReleaseVersion>false</SynchReleaseVersion>
+        <Description>Manages your dotnet stuff
+
+* Sdks
+* Tools</Description>
+        <Version>0.1</Version>
     </PropertyGroup>
     <PropertyGroup>
         <PackageId>dotnet-manage</PackageId>
         <IsTool>true</IsTool>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>dotnet-manage</ToolCommandName>
+        <PackageVersion>$(Version)</PackageVersion>
+        <Authors>Andreas Klapperich</Authors>
+        <Owners>Andreas Klapperich</Owners>
+        <Title>dotnet-manage</Title>
+        <PackOnBuild>true</PackOnBuild>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Terminal.Gui" Version="0.16.0" />
-        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.5" />
         <PackageReference Include="Mono.Options" Version="5.3.0.1" />
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+        <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Windows\" />
+        <Folder Include="Views\" />
     </ItemGroup>
 </Project>

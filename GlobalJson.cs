@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 namespace dotnet_manage
 {
     public class GlobalJson
     {
         public class GlobalJsonSdk
         {
-            public string version { get; set; } = "";
+            [JsonProperty("version")]
+            public string Version { get; set; } = "";
         }
+        [JsonProperty("sdk")]
         public GlobalJsonSdk Sdk { get; set; } = new GlobalJsonSdk();
 
         public GlobalJson()
@@ -16,7 +20,7 @@ namespace dotnet_manage
 
         public GlobalJson(string version)
         {
-            Sdk.version = version;
+            Sdk.Version = version;
         }
     }
 }
